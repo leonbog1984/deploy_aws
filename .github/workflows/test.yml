@@ -8,10 +8,17 @@ on:
   push:
     branches:
       - main
+
 jobs:
   my_ci_pipeline:
-    runs-on: ubuntu-latest
+    runs-on : ubuntu-latest
     
     steps:
-    - name: echo test
-      run: echo "test"
+    - name : echo test
+      run  : echo "test"
+
+    - name : prepare zip archive
+      run  : |
+        zip -r ${{ env.DEPLOY_PACKAGE_NAME }}
+        ls -la
+
