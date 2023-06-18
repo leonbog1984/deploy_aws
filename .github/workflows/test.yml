@@ -37,3 +37,8 @@ jobs:
     - name : deploy package to S3 bucket
       run  : aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.S3_BUCKET_NAME }}/
 
+    - name : terraform deploy
+      run  : |
+        terraform init
+        terraform plan
+
