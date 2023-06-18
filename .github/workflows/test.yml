@@ -1,14 +1,17 @@
-name: test_workflow
-on: 
-  push:
-    branches: 
-      - main
+name: CI-CD-AWS
+env:
+  S3_BUCKET_NAME      : "github-test-deployment" 
+  DEPLOY_PACKAGE_NAME : "project_${{ github.sha }}.zip"
+  S3_REGION_NAME      : "eu-north-1"
 
+on:
+  push:
+    branches:
+      - main
 jobs:
-  my_testing:
+  my_ci_pipeline:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Print test
-      run: echo test
-    
+    - name: echo test
+      run: echo "test"
