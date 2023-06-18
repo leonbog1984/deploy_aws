@@ -22,6 +22,6 @@ jobs:
 
     - name : prepare zip archive
       run  : |
-        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} -x ".git."
+        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x ".git."
         ls -la
 
