@@ -14,11 +14,14 @@ jobs:
     runs-on : ubuntu-latest
     
     steps:
-    - name : echo test
-      run  : echo "test"
+    - name: clone content
+      uses: actions/checkout@v1
+
+    - name : list files
+      run  : ls -la
 
     - name : prepare zip archive
       run  : |
-        zip -r ${{ env.DEPLOY_PACKAGE_NAME }}
+        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} -x ".git."
         ls -la
 
