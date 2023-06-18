@@ -16,7 +16,7 @@ output "data_aws_ami" {
 }
 
 resource "aws_instance" "srv01" {
-  ami                    = data.aws_ami.ubuntu_latest.id
+  ami                    = "ami-0989fb15ce71ba39e"
   instance_type          = "t2.micro"
 }
 
