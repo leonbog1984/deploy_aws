@@ -22,8 +22,18 @@ jobs:
 
     - name : prepare zip archive
       run  : |
-        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x ".git."
+        zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x "*.git"
         ls -la
         echo ${{ secrets.MY_AWS_ACCESS_KEY }}
         echo ${{ secrets.MY_AWS_SECRET_KEY }}
+
+    - name : Configure AWS credentials
+      uses : aws-actions/configure-aws-credentials@v1
+      with :
+        aws-access-key-id     : ${{ secrets.MY_AWS_ACCESS_KEY }}
+        aws-secret-access-key : ${{ secrets.MY_AWS_SECRET_KEY }}
+        aws-reginon           : ${{ env.S3_REGION_NAME }} 
+
+    - name : deploy package to S3 bucket
+      run  : aws s3 cp ${{ env.DEPLOY_PACKAGE_NAME }} s3://${{ env.S3_BUCKET_NAME }}/
 
