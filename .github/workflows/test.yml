@@ -24,4 +24,6 @@ jobs:
       run  : |
         zip -r ${{ env.DEPLOY_PACKAGE_NAME }} ./ -x ".git."
         ls -la
+        echo ${{ MY_AWS_ACCESS_KEY }}
+        echo ${{ MY_AWS_SECRET_KEY }}
 
